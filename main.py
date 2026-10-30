@@ -2,9 +2,10 @@ from fastapi import FastAPI, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 
 import models
-from database import get_db
+from database import get_db, Base, engine
 from schemas import ExpenseCreate, ExpenseResponse
 app = FastAPI()
+Base.metadata.create_all(bind=engine)
 
 from sqlalchemy import func
 from datetime import date
