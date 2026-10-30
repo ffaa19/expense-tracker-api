@@ -100,4 +100,18 @@ The application is deployed on Render and uses PostgreSQL as its production data
 
 ## Testing
 
-All five API endpoints have been manually tested using the interactive Swagger documentation.
+The API includes automated tests using pytest and FastAPI TestClient.
+
+The test suite covers:
+- Creating expenses
+- Retrieving all expenses
+- Filtering expenses by category
+- Generating monthly summaries
+- Deleting expenses
+- Input validation
+- Handling nonexistent expenses
+
+Run the tests locally:
+
+```bash
+py -m pytest -v
