@@ -1,6 +1,10 @@
 # Expense Tracker API
 
-A RESTful Expense Tracker API built with Python, FastAPI, and SQLAlchemy. It allows users to manage expenses, filter them by category, and generate monthly spending summaries.
+A RESTful Expense Tracker API built with Python, FastAPI, and SQLAlchemy. The application allows users to manage expenses, filter them by category, and generate monthly spending summaries.
+
+**Live API:** https://expense-tracker-api-8tj2.onrender.com
+
+**Interactive API Documentation:** https://expense-tracker-api-8tj2.onrender.com/docs
 
 ## Technologies Used
 
@@ -8,7 +12,7 @@ A RESTful Expense Tracker API built with Python, FastAPI, and SQLAlchemy. It all
 - FastAPI
 - SQLAlchemy
 - SQLite (local development)
-- PostgreSQL (deployment)
+- PostgreSQL (production)
 - Pydantic
 - Uvicorn
 
@@ -31,21 +35,40 @@ expense-tracker/
 ├── schemas.py
 ├── requirements.txt
 ├── Procfile
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
-## Installation and Setup
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/expenses` | Create an expense |
+| GET | `/expenses` | Retrieve all expenses |
+| GET | `/expenses/category/{category}` | Filter expenses by category |
+| GET | `/expenses/summary?year={year}&month={month}` | Get monthly spending totals by category |
+| DELETE | `/expenses/{expense_id}` | Delete an expense |
+
+## Validation
+
+The API uses Pydantic to validate incoming data, including:
+
+- Positive expense amounts.
+- Non-empty category and description fields.
+- Valid date values.
+
+## Installation and Local Setup
 
 1. Clone the repository:
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/ffaa19/expense-tracker-api.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd expense-tracker
+cd expense-tracker-api
 ```
 
 3. Install dependencies:
@@ -66,24 +89,15 @@ uvicorn main:app --reload
 http://127.0.0.1:8000/docs
 ```
 
-## API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/expenses` | Create an expense |
-| GET | `/expenses` | Retrieve all expenses |
-| GET | `/expenses/category/{category}` | Filter expenses by category |
-| GET | `/expenses/summary?year={year}&month={month}` | Get monthly spending totals by category |
-| DELETE | `/expenses/{expense_id}` | Delete an expense |
-
-## Validation
-
-The API uses Pydantic to validate incoming data, including positive expense amounts, non-empty category and description fields, and valid dates.
+By default, the application uses SQLite locally. PostgreSQL is configured through the `DATABASE_URL` environment variable in production.
 
 ## Deployment
 
-The application will be deployed using Railway with PostgreSQL as its production database.
+The application is deployed on Render and uses PostgreSQL as its production database.
 
-**Live API:** To be added after deployment.
+- **Live API:** https://expense-tracker-api-8tj2.onrender.com
+- **Swagger Documentation:** https://expense-tracker-api-8tj2.onrender.com/docs
 
-**Interactive Documentation:** To be added after deployment.
+## Testing
+
+All five API endpoints have been manually tested using the interactive Swagger documentation.
