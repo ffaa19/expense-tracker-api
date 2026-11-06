@@ -28,3 +28,12 @@ class ExpenseResponse(BaseModel):
     description: str
     date: date
     created_at: datetime
+
+class UserCreate(BaseModel):
+    email: str
+    password: str = Field(min_length=8)
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: str

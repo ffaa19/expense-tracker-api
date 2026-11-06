@@ -4,3 +4,6 @@ sqlalchemy
 psycopg[binary]
 pytest
 httpx
+pwdlib[argon2]
+PyJWT[crypto]
+python-dotenv
